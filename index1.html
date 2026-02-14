@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Adventures</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 10;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .background-video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(0px);
+            transform: scale(1.1);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+
+        .overlay {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .overlay h1 {
+            font-size: 3rem;
+        }
+
+        .overlay p {
+            max-width: 600px;
+            margin: 15px 0 25px;
+            opacity: 0.9;
+        }
+
+        /* ========== BUTTON ========== */
+        .cta-button {
+            padding: 14px 30px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+            transition: 0.3s;
+            margin-bottom: 40px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 123, 255, 0.9);
+        }
+
+        /* ========== CARDS ========== */
+        .card-container {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+
+        .card {
+            width: 230px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            transition: 0.4s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .card i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #00c6ff;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.05);
+        }
+
+        /* ========== DESTINATIONS ========== */
+        #destinations {
+            padding: 70px 40px;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        #destinations h2 {
+            margin-bottom: 10px;
+        }
+
+        #destinations p {
+            margin-bottom: 40px;
+            color: #111010;
+        }
+
+        .destination-card {
+            background: #8aa3ac;
+            color: white;
+        }
+
+        .destination-card i {
+            color: #dceff4;
+        }
+        
+ #destinations2 {
+            padding: 70px 40px;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        #destinations2 h2 {
+            margin-bottom: 10px;
+        }
+
+        #destinations2 p {
+            margin-bottom: 40px;
+            color: #616060;
+        }
+
+        .destination-card {
+            background: #8aa3ac;
+            color: white;
+        }
+
+        .destination-card i {
+            color: #dceff4;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .overlay h1 {
+                font-size: 2rem;
+            }
+        }
+        .card-container2 {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+
+        .card {
+            width: 230px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            transition: 0.4s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgb(241, 241, 241);
+        }
+
+        .card i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #00c6ff;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.05);
+        }
+         #destinations {
+            padding: 70px 40px;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        #destinations h2 {
+            margin-bottom: 10px;
+        }
+
+        #destinations p {
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+
+        .destination-card {
+            background: #8aa3ac;
+            color: white;
+        }
+
+        .destination-card i {
+            color: #dceff4;
+        }
+        
+ #destinations2 {
+            padding: 70px 40px;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        #destinations2 h2 {
+            margin-bottom: 10px;
+        }
+
+        #destinations2 p {
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+
+        .destination-card {
+            background: #8aa3ac;
+            color: white;
+        }
+
+        .destination-card i {
+            color: #000000;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .overlay h1 {
+                font-size: 2rem;
+            }
+        }
+        .card-container1 {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+
+        .card {
+            width: 230px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            transition: 0.4s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .card i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #00c6ff;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.05);
+        }
+       /* ================= SECTION BACKGROUNDS ================= */
+
+#destinations,
+#destinations2,
+#destinations3 {
+    position: relative;
+    padding: 80px 40px;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Dark overlay for readability */
+#destinations::before,
+#destinations2::before,
+#destinations3::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+/* Content stays above overlay */
+#destinations > *,
+#destinations2 > *,
+#destinations3 > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ================= BACKGROUND IMAGES ================= */
+
+#destinations {
+    background-image: url(pexels6.jpg);
+}
+
+#destinations2 {
+    background-image: url(pexels5.jpg);
+}
+
+#destinations3 {
+    background-image: url(pexels4.jpg);
+}
+
+/* ================= HEADINGS ================= */
+
+#destinations h2,
+#destinations2 h2,
+#destinations3 h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#destinations p,
+#destinations2 p,
+#destinations3 p {
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+/* ================= CARDS ================= */
+
+.card-container {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 230px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    text-align: center;
+    transition: 0.4s;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgb(255, 255, 255);
+}
+
+.card i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #00c6ff;
+}
+
+.card:hover {
+    transform: translateY(-15px) scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    #destinations h2,
+    #destinations2 h2,
+    #destinations3 h2 {
+     background-attachment: scroll;
+    }
+
+    .card {
+        width: 90%;
+    }
+}
+
+       
+       
+         .background-video1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(0.5px);
+            transform: scale(1.1);
+        }
+        .Myform{
+            
+            width: 350px;
+            margin: 40px auto;
+            padding: 20px;
+           background: #8aa3ac;
+            border-radius: 8px;
+            box-shadow: #e73737;
+            font-size: 20px;
+            text-decoration-color: bisque;
+
+        }
+        .fade-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 198, 255, 0.6);
+    border-color: rgba(0, 198, 255, 0.8);
+}
+.small-register {
+    padding: 50px 15px;
+    text-align: center;
+    background: transparent;
+    backdrop-filter: blur(0px);
+}
+
+.small-register h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.small-form {
+    width: 260px;
+    margin: auto;
+    padding: 20px;
+    
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.small-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #52d5ec;
+    font-size: 14px;
+}
+
+.small-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.small-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.small-form button:hover {
+    background: #0056b3;
+}
+.footer {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    padding: 60px 20px 20px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.footer h3,
+.footer h4 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-about p {
+    line-height: 1.6;
+    color: #dcdcdc;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: #dcdcdc;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #00e5ff;
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    color: #dcdcdc;
+}
+
+.footer-contact i {
+    margin-right: 8px;
+    color: #00e5ff;
+}
+
+.footer-social .social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: #00e5ff;
+    color: #000;
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    color: #ccc;
+}
+.cta-button {
+  background: linear-gradient(135deg, #ff6b35, #ff9f1c);
+  padding: 14px 35px;
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(255,107,53,0.4);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 20px 40px rgba(255,107,53,0.6);
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <h2>Tourist</h2>
+        <div>
+            <a href="#">Home</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <video autoplay muted loop playsinline class="background-video">
+            <source src="video.mp3.mp4" >
+        </video>
+
+        <div class="overlay">
+            <h1>Welcome to Tourist Adventures</h1>
+            <p>Discover breathtaking destinations and create unforgettable travel memories with us.</p>
+            <a href="#destinations" class="cta-button">Explore Now</a>
+
+            <div class="card-container">
+                <div class="card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Start Tour</h3>
+                    <p>Begin your journey today</p>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-flag"></i>
+                    <h3>India</h3>
+                    <p>Explore beautiful India</p>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-plane"></i>
+                    <h3>International</h3>
+                    <p>Travel beyond borders</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESTINATIONS -->
+    <section id="destinations">
+        <h2><U>STATES</U></h2>
+        <p>Unique cultural,geographical, culinary specialties 🚀</p>
+
+        <div class="card-container1">
+            <div class="card destination-card">
+                <i class="fa-solid fa-location-dot"></i>
+                <h3>Manali</h3>
+                <p>Is renowned as a premier Himalayan hills</p>
+            </div>
+
+            <div class="card destination-card">
+                <i class="fa-solid fa-flag"></i>
+                <h3>West Bengal</h3>
+                <p>Is renowned as indians cultural capital</p>
+            </div>
+
+            <div class="card destination-card">
+                <i class="fa-solid fa-plane"></i>
+                <h3>Assam</h3>
+                <p>Is renowned for sprawling tea gardens</p>
+            </div>
+        </div>
+    </section>
+ <!-- DESTINATIONS  -->
+    <section id="destinations2">
+        <h2><U>COUNTRY</U></h2>
+        <p>Cultural,Historical,And natural features. 🚀</p>
+
+        <div class="card-container2">
+            <div class="card destination-card">
+                <i class="fa-solid fa-location-dot"></i>
+                <h3>Russia</h3>
+                <p>Is primarily recognized as the worlds largest Country</p>
+            </div>
+
+            <div class="card destination-card">
+                <i class="fa-solid fa-flag"></i>
+                <h3>Canada</h3>
+                <p>Include iconic food like Poutine,Maple Syrup,Butter Tarts,etc.</p>
+            </div>
+
+            <div class="card destination-card">
+                <i class="fa-solid fa-plane"></i>
+                <h3>Thailand</h3>
+                <p>Globally renowned spicy & aromatic cuisine like Tom,Pad</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="destinations3">
+        <h2><U>CITY</U></h2>
+        <p>It is usually governed by a municipal corporation,municipality, cantonment board.🚀</p>
+
+        <div class="card-container">
+            <div class="card destination-card">
+                <i class="fa-solid fa-location-dot"></i>
+                <h3>Mumbai</h3>
+                <P>The capital of maharashtra and financial,commercial,and entertainment capital of india.</p>
+            </div>
+
+            <div class="card destination-card">
+                <i class="fa-solid fa-flag"></i>
+                <h3>Bangalore</h3>
+                <p>The "Silicon Valley" of india, it serves as the IT capital.</p>
+            </div>
+
+            <div class="card destination-card">
+                <i class="fa-solid fa-plane"></i>
+                <h3>Kolkata</h3>
+                <p>Globally renowned spicy & aromatic cuisine like tom,Pad.</p>
+
+            </div>
+        </div>
+  <section class="small-register">
+    <h2><U>REGISTER</U></h2>
+
+    <form class="small-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="tel" placeholder="Mobile" required>
+        <input type="password" placeholder="Password" required>
+
+         <button><a href="thanku.html">Sign Up</a></button>
+    </form>
+</section>
+
+
+
+   <script>
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll(".fade-up").forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-about">
+            <h3>Tourist</h3>
+            <p>
+                Discover breathtaking destinations, cultures, and unforgettable
+                travel experiences across the globe.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#destinations2">Countries</a></li>
+                <li><a href="#destinations3">Cities</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p><i class="fa-solid fa-location-dot"></i> India</p>
+            <p><i class="fa-solid fa-envelope"></i> tourist@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+        </div>
+
+        <div class="footer-social">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Tourist Adventures | Designed with ❤️ for Travelers</p>
+    </div>
+</footer>
+
+
+</body>
+</html>
